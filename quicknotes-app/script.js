@@ -4,7 +4,6 @@ const categorySelect = document.querySelector("#note-category");
 const errorMessage = document.querySelector("#error-message");
 const searchInput = document.querySelector("#search-input");
 const noteCount = document.querySelector("#note-count");
-const clearAllBtn = document.querySelector("#clear-all-btn");
 const list = document.querySelector("#notes-list");
 
 const MAX_LENGTH = 200;
@@ -131,14 +130,5 @@ form.addEventListener("submit", (event) => {
 });
 
 searchInput.addEventListener("input", render);
-
-clearAllBtn.addEventListener("click", () => {
-  if (notes.length === 0) return;
-  if (confirm("Delete all notes?")) {
-    notes = [];
-    saveNotes();
-    render();
-  }
-});
 
 render();
