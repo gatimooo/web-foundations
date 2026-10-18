@@ -1,0 +1,28 @@
+# QuickNotes System Design
+
+QuickNotes is moving from a browser-only app to an online service for 1 million users. This repository has two parts:
+
+1. **API client:** a small HTML/CSS/JavaScript page that loads, creates and deletes notes using the [JSONPlaceholder](https://jsonplaceholder.typicode.com) practice API.
+2. **Design documents:** the real API, data model and architecture for the backend team.
+
+## How to run the API client
+
+1. Clone the repository: `git clone https://github.com/your-username/quicknotes-system-design.git`
+2. Open `index.html` in a browser (double-click it, or run `python3 -m http.server` and visit `http://localhost:8000`).
+3. Click **Load notes** to fetch 10 notes, use the form to add a note, and click **Delete** on a note to remove it.
+
+No build step or installation is needed. Note: JSONPlaceholder pretends to save changes but does not store them, so created notes disappear when you reload.
+
+## Documents
+
+- [API design](docs/api-design.md)
+- [Data model](docs/data-model.md)
+- [Architecture](docs/architecture.md)
+
+## What I learned
+
+- A reusable `request()` helper that checks `response.ok` keeps error handling in one place, because `fetch` only rejects on network failures, not on 404 or 500.
+- A good UI shows every state (loading, success, error, empty), disables buttons during requests, and uses `textContent` so user text can never inject HTML.
+- REST design means plural nouns, the right verbs and status codes (201 for create, 204 for delete, 400/401/403/404 for client errors).
+- Many-to-many relationships need a join table, and an index on `(user_id, created_at)` serves the most common query.
+- Scaling is about removing single points of failure and using caches, replicas and queues for a read-heavy workload, each with a trade-off.
