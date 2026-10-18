@@ -1,0 +1,7 @@
+# Day 8 Reflection
+
+**The most difficult concept.** The hardest idea for me was concurrency: understanding that two requests can both read "seat available" at the same moment, and both then believe they can take it. At first I thought checking the seat in my code and then saving it was enough. I only understood the problem when I wrote out two users' steps side by side on paper and saw how the gap between the check and the write lets both succeed. What fixed it was learning that the check and the write must be a single atomic operation, with a transaction and a conditional UPDATE, and that a UNIQUE constraint gives a final safety net even if my code has a bug. Practising this on the TicketHub seat problem made it click.
+
+**What I would improve.** The feedback on my capstone was that my non-functional requirements were too vague and my estimates did not show how they shaped the design. I would rewrite them with real numbers, such as "seat map in under 500 ms at 3,300 requests per second", and then trace each architecture choice back to one of those numbers. I would also add monitoring and a clear plan for what happens when a component fails, because my design mostly described the happy path.
+
+**What I will learn next.** I want to learn how databases actually implement locking and isolation levels, so I can explain why the design works rather than just trust it. After that I want to practise caching strategies, message queues, and load testing, so I can measure whether a design really survives a spike instead of only estimating it on paper.
