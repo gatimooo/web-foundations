@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuickNotes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>QuickNotes</h1>
+    <p class="tagline">Jot it down now, find it later.</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="add-heading">
+      <h2 id="add-heading">Add a note</h2>
+      <form id="note-form">
+        <div class="field field-text">
+          <label for="note-input">Note</label>
+          <input type="text" id="note-input" placeholder="What do you want to remember?" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="note-category">Category</label>
+          <select id="note-category">
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="Study">Study</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary">Add Note</button>
+      </form>
+      <p id="error-message" role="alert"></p>
+    </section>
+
+    <section class="card" aria-labelledby="notes-heading">
+      <h2 id="notes-heading">Your notes</h2>
+      <label for="search-input" class="visually-hidden">Search notes</label>
+      <input type="search" id="search-input" placeholder="Search notes..." autocomplete="off">
+      <p id="note-count"></p>
+      <button type="button" id="clear-all-btn" class="btn-danger">Clear all</button>
+      <ul id="notes-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>QuickNotes &copy; 2026. Your notes stay in this browser.</p>
+  </footer>
+</body>
+</html>
